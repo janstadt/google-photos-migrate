@@ -96,8 +96,9 @@ To run `fullMigrate`, which requires only the Takeout folder:
 mkdir output error
 docker run --rm -it -security-opt=label=disable \
     -v $(readlink -e path/to/takeout):/takeout \
+    -v $(readlink -e path/to/output):/output \
    localhost/google-photos-migrate:latest \
-     fullMigrate '/takeout' --timeout=60000
+     fullMigrate '/takeout' '/output' --timeout=60000
 ```
 
 All other commands and options are also available. The only difference from running it natively is the lack of (possible) hardware acceleration, and the need to explicitly add any folders the command will need to reference as host-mounts for the container.
